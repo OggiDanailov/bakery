@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<nav>
+		<ul>
+		<%# if @current_user %>	
+			<li>Logout</li>
+		<%# end %>
+			<li>Products</li>
+			<li></li>
+		</ul>
+	</nav>
+
+
+
+<div class='main-container'>
+	<%= yield %>
+</div>
+
+<% flash.keys.each do |type| %>
+   <%= type %> 
+    <%= flash[type] %>
+    <a href="/" class="close">&times;</a>
+  </div>
+<% end %>
+
+
+</body>
+</html>
