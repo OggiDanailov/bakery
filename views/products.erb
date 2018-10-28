@@ -1,1 +1,10 @@
 <h2>List of sweets</h2>
+
+<h3>Cookies: </h3>
+<% @cookies.each do |c| %>
+	<div>Name: <%= c.name %>	</div>
+
+	<div> Price: $<%= c.price %></div>
+	<div><image width="100px" height="150px" src=	<%= c.url %> > </div>
+<% end %>
+

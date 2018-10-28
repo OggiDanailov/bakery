@@ -5,10 +5,14 @@
 <body>
 	<nav>
 		<ul>
-		<%# if @current_user %>	
-			<li>Logout</li>
-		<%# end %>
-			<li>Products</li>
+		<% if current_user %>	
+			<li class='current'><%= current_user.username %></li>
+			<li><form method='post' action="/login">
+				<input type='submit' value='Logout'>
+			</form></li>
+		<% end %>
+
+			<li><a href="/products"> Products </a></li>
 			<li></li>
 		</ul>
 	</nav>
