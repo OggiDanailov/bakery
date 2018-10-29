@@ -50,7 +50,8 @@ end
 
 post "/logout" do 
 	session[:user_id] = nil
-	redirect "/"
+	puts 'whatever'
+	redirect "/thank"
 end
 
 get '/guests' do 
