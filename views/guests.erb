@@ -2,7 +2,7 @@
 
 
 <% @users.each_with_index do |g, index| %>
-	<div><%= index + 1 %>	<%= g.username %></div>
+	<div><a href="/guests/ <%= g.id %>"><%= index + 1 %>	<%= g.username %></a></div>
 <% end %>
 
 

@@ -3,6 +3,9 @@ require 'sinatra/activerecord'
 require 'sinatra/flash' 
 set :database, 'sqlite3:bakery.sqlite3'  
 require './models'
+require 'sendgrid-ruby'
+
+include SendGrid
 
 set :sessions, true
 
@@ -96,6 +99,30 @@ end
 
 get "/products/cholocate" do
 	erb :chocoloate
+end
+
+
+get "/contact" do
+	erb :contact
+end
+
+post "/mail" do
+	from = Email.new(email: params[:inputEmail])
+	to = Email.new(email: 'ogidan@abv.bg')
+	subject = params[:inputSubject]
+	content = Content.new(type: 'text/plain', value: params[:inputText])
+	mail = Mail.new(from, subject, to, content)
+
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+response = sg.client.mail._('send').post(request_body: mail.to_json)
+puts response.status_code
+puts response.body
+puts response.headers
+	redirect "/thank"
+end
+
+get '/thank' do
+	erb :thank
 end
 
 
