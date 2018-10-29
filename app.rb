@@ -13,7 +13,6 @@ def current_user
 end
 
 get "/" do 
-	puts "this is the current user #{current_user.username}"
 	erb :home
 end
 
@@ -50,6 +49,18 @@ post "/logout" do
 	session[:user_id] = nil
 	redirect "/"
 end
+
+get '/guests' do 
+	@users = User.all
+	erb :guests
+end
+
+get "/guests/:id" do
+	@user = User.find_by_id(params[:id])
+	erb :guest
+end
+
+
 
 class Cookies
 	attr_accessor :name, :price, :url
